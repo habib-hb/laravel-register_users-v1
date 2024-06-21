@@ -25,7 +25,11 @@ Route::get('/dashboard', function () {
 
 
 
-Route::get('/haha', [HahaController::class , 'haha_number']);
+Route::get('/haha', [HahaController::class , 'all_hahas']);
+
+
+
+Route::post('/haha/store', [HahaController::class , 'haha_store'])->name('haha');
 
 
 

@@ -21,5 +21,37 @@
 
 
 
+    <form action="{{ route('haha') }}" method="POST">
+    @csrf
+    <input type="text" name="laugh" placeholder=" Ha ha ha">
+   
+    <button type="submit">Create Haha</button>
+    </form>
+
+    
+
+    @if(session('message') == 'The haha was uploaded successfully...!!')
+
+        <h2 style='color:blue'>{{session('message')}}</h2>
+    
+    @endif
+
+
+
+    @if(session('message') == 'Alas! You may cry! The data got lost somehow!! ')
+
+        <h2 style='color:red'>{{session('message')}}</h2>
+
+    @endif
+
+
+    @if($hahas)
+        
+        @foreach($hahas as $haha)
+            <h3>{{$haha->laugh}}</h3>
+        @endforeach
+
+    @endif
+
     </body>
 </html>
