@@ -9,8 +9,6 @@ use App\Models\Haha;
 class HahaController extends Controller
 {
 
-
-
     public function all_hahas(){
         $list_of_hahas = Haha::all();
 
@@ -21,9 +19,11 @@ class HahaController extends Controller
 
     public function haha_store(Request $req){
 
-        $validated_data = $req->validate([
-            'laugh' => 'string|required|max:255'
-        ]);
+        try{
+
+            $validated_data = $req->validate([
+                'laugh' => 'numeric|required|max:255'
+            ]);
 
         $haha_create = Haha::create(['laugh' => $validated_data['laugh']]);
 
@@ -34,9 +34,18 @@ class HahaController extends Controller
 
         } else {
 
-            return redirect('/haha')->with('message' , 'Alas! You may cry! The data got lost somehow!! ');
+            return redirect('/haha')->with('message' , 'Alas! You may cry! The data got lost somehow!!');
 
         }
+
+
+
+    } catch(\Exception $e){
+
+        return redirect('/haha')->with('message' , 'Alas! You may cry! The data got lost somehow!!');
+
+    }
+
     }
 
 }
