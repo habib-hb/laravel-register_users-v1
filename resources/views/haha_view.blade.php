@@ -30,6 +30,15 @@
 
 
 
+    <div>
+        <br><br>
+        <h2 style="color:blue">{{$user_personality_type}}</h2>
+        <br><br>
+
+    </div>
+
+
+
     @if(session('message') == 'The haha was uploaded successfully...!!')
 
     <h2 style='color:red'>{{session('message')}}</h2>

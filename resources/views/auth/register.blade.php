@@ -9,6 +9,17 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
+        <!-- Personality Type Options -->
+         <div>
+            <select name="personality_type" id="personality_type">
+                <option value=1 >Extroversion</option>
+                <option value=2 >Agreeableness</option>
+                <option value=3 >Openness</option>
+                <option value=4 >Conscientiousness</option>
+                <option value=5 >Neuroticism</option>
+            </select>
+         </div>
+
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />

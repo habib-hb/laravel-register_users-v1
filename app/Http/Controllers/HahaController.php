@@ -5,14 +5,31 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Haha;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HahaController extends Controller
 {
 
+
+
     public function all_hahas(){
         $list_of_hahas = Haha::all();
 
-        return view('haha_view', ['hahas' => $list_of_hahas]);
+        // Performing Personality type data extraction
+        if(Auth::check()){
+            $current_user_id = Auth::user()->id;
+
+
+            
+            $the_user_personality = DB::select('SELECT personality_string FROM user_personality_store INNER JOIN personality_type ON user_personality_store.personality_type_identifier_int = personality_type.identifier_int WHERE user_personality_store.user_id = ?' , [$current_user_id]);
+
+
+
+        }
+
+        return view('haha_view', ['hahas' => $list_of_hahas, 
+        'user_personality_type' => $the_user_personality[0]->personality_string ?? 'User Is not logged In.' ]);
     }
 
 
